@@ -1,14 +1,27 @@
 "use client"
 
 import React from "react"
+import DFSAlgo from "@/Algorithms/DFS/dfs"
 
+import { type node } from "@/types/misc"
+import {
+  GRID_COL_MAX_SIZE,
+  GRID_ROW_MAX_SIZE,
+  NODE_START_COL,
+  NODE_START_ROW,
+} from "@/lib/consts"
 import { getInitialGrid } from "@/lib/utils"
 
+import { Button } from "./button"
 import { NodeSquareComponent } from "./square"
 
 const Visualizer: React.FC = () => {
-  console.log(getInitialGrid())
-  const [state, setState] = React.useState(getInitialGrid())
+  const [state, setState] = React.useState<node[][]>(getInitialGrid())
+
+  function update(grid: node[][]) {
+    setState(grid)
+    console.log(state)
+  }
   return (
     <div>
       {state.map((row, i) => (
@@ -23,6 +36,7 @@ const Visualizer: React.FC = () => {
                 isFinish: col.isFinish,
                 distance: col.distance,
                 isVisited: col.isVisited,
+                isShortestPathNode: col.isShortestPathNode,
                 isWall: col.isWall,
                 previousNode: col.previousNode,
               }}
@@ -30,6 +44,25 @@ const Visualizer: React.FC = () => {
           ))}
         </div>
       ))}
+
+      <Button
+        variant="secondary"
+        size="default"
+        onClick={() => {
+          console.log("clicked")
+          const [res, grid, vis] = DFSAlgo(
+            state,
+            GRID_ROW_MAX_SIZE,
+            GRID_COL_MAX_SIZE,
+            NODE_START_ROW,
+            NODE_START_COL
+          )
+          console.log(vis)
+          update(grid)
+        }}
+      >
+        test
+      </Button>
     </div>
   )
 }

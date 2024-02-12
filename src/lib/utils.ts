@@ -22,6 +22,7 @@ export function createNode(col: number, row: number) {
     isFinish: row === NODE_FINISH_ROW && col === NODE_FINISH_COL,
     distance: Infinity,
     isVisited: false,
+    isShortestPathNode: false,
     isWall: false,
     previousNode: null,
   }

@@ -17,6 +17,7 @@ export type node = {
   isFinish: boolean
   distance: number
   isVisited: boolean
+  isShortestPathNode: boolean
   isWall: boolean
   previousNode: node | null
 }

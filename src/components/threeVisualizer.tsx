@@ -3,7 +3,7 @@
 // components/ThreeVisualizer.js
 import React, { useEffect, useRef } from "react"
 import * as THREE from "three"
-import { Mesh } from "three"
+import { type Mesh } from "three"
 
 const ThreeVisualizer = () => {
   const mountRef = useRef<Mesh>(null!)
@@ -21,7 +21,7 @@ const ThreeVisualizer = () => {
     renderer.setSize(window.innerWidth, window.innerHeight)
     if (mountRef.current !== null) {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-      mountRef.current.appendChild(renderer.domElement)
+      mountRef.current?.appendChild(renderer.domElement)
     }
 
     // Adding a cube
@@ -32,17 +32,7 @@ const ThreeVisualizer = () => {
 
     camera.position.z = 15
 
-    // // Animation loop
-    // const animate = function () {
-    //   requestAnimationFrame(animate)
-
-    //   cube.rotation.x += 0.01
-    //   cube.rotation.y += 0.01
-
-    //   renderer.render(scene, camera)
-    // }
-
-    // animate()
+    // Animation loop
     renderer.render(scene, camera)
 
     // Cleanup on component unmount
