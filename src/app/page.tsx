@@ -1,3 +1,4 @@
+import ThreeVisualizer from "@/components/threeVisualizer"
 import Visualizer from "@/components/visualizer"
 
 export default function Home() {
@@ -15,6 +16,9 @@ export default function Home() {
       <h1>statingh</h1>
       <div>
         <Visualizer />
+
+        <h1>3D Algorithm Visualizer</h1>
+        <ThreeVisualizer />
       </div>
     </main>
   )
