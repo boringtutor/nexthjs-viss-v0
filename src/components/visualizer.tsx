@@ -1,6 +1,7 @@
 "use client"
 
 import React from "react"
+import BFSAlgo from "@/Algorithms/BFS/bfs"
 import DFSAlgo from "@/Algorithms/DFS/dfs"
 
 import { type node } from "@/types/misc"
@@ -50,7 +51,8 @@ const Visualizer: React.FC = () => {
         size="default"
         onClick={() => {
           console.log("clicked")
-          const [res, grid, vis] = DFSAlgo(
+          // TODO: fix this destructing of the result
+          const { res, grid, vis } = BFSAlgo(
             state,
             GRID_ROW_MAX_SIZE,
             GRID_COL_MAX_SIZE,
